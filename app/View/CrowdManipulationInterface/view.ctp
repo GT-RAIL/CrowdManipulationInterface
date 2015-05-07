@@ -433,23 +433,18 @@ foreach ($environment['Urdf'] as $urdf) {
 	}
 
 	function addInteractiveMarkers(){
-		// Interactive Markers for parking and carl's hand
-		_IM = new ROS3D.InteractiveMarkerClient({
-			ros: _ROS,
-			tfClient: _TF,
-			camera: _VIEWER.camera,
-			rootObject: _VIEWER.selectableObjects,
-			loader: 1,
-			path: 'http://resources.robotwebtools.org/',
-			topic: '/carl_interactive_manipulation'
-		});
-		_PARKING_MARKERS = new ROS3D.InteractiveMarkerClient({
-			ros: _ROS,
-			tfClient: _TF,
-			camera: _VIEWER.camera,
-			rootObject: _VIEWER.selectableObjects,
-			topic: '/parking_markers'
-		});
+		//add IMs
+		<?php foreach ($environment['Im'] as $im): ?>
+			new ROS3D.InteractiveMarkerClient({
+				ros: _ROS,
+				tfClient: _TF,
+				camera: _VIEWER.camera,
+				rootObject: _VIEWER.selectableObjects,
+				<?php echo ($im['Collada']['id']) ? __('loader:%d,', h($im['Collada']['id'])) : ''; ?>
+				<?php echo ($im['Resource']['url']) ? __('path:"%s",', h($im['Resource']['url'])) : ''; ?>
+				topic: '<?php echo h($im['topic']); ?>'
+			});
+		<?php endforeach; ?>
 	}
 
 	function addButtons(){

@@ -31,7 +31,7 @@ class CrowdManipulationInterfaceController extends InterfaceController {
 				'nav2djs' => 'current',
 				'ros3djs' => 'current',
 				'keyboardteleopjs' => 'current',
-				'mjpegcanvas' => 'current',
+				'mjpegcanvasjs' => 'current',
 				'rosqueuejs' => 'current'
 			)
 		);
