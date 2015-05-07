@@ -123,7 +123,8 @@ echo $this->Rms->tf(
 	?>
 	new MJPEGCANVAS.MultiStreamViewer({
 		divID: 'mjpeg',
-		host: '<?php echo $environment['Mjpeg']['host'].":".$environment['Mjpeg']['port']; ?>',
+		host: '<?php echo $environment['Mjpeg']['host']; ?>',
+		port: <?php echo $environment['Mjpeg']['port']; ?>',
 		width: size,
 		height: size * 0.85,
 		quality: <?php echo ($environment['Stream'][0]['quality']) ? $environment['Stream'][0]['quality'] : '90'; ?>,
