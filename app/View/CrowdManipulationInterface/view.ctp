@@ -426,7 +426,9 @@ foreach ($environment['Urdf'] as $urdf) {
 	function addTeleop(){
 		//keyboard tele-op
 		_TELEOP = new KEYBOARDTELEOP.Teleop({ros: _ROS, topic: '<?php echo $environment['Teleop'][0]['topic']; ?>'});
-		_TELEOP.throttle = <?php echo $environment['Teleop'][0]['throttle']; ?>;
+		<?php if ($environment['Teleop'][0]['throttle']): ?>
+			_TELEOP.throttle = <?php echo $environment['Teleop'][0]['throttle']; ?>;
+		<?php endif; ?>
 
 		/** arrow keys
 		 * on key up and key down send commands to drive or tilt camera
