@@ -126,7 +126,7 @@ echo $this->Rms->tf(
 		host: '<?php echo $environment['Mjpeg']['host'].":".$environment['Mjpeg']['port']; ?>',
 		width: size,
 		height: size * 0.85,
-		quality: <?php echo $environment['Stream'][0]['quality']; ?>,
+		quality: <?php echo ($environment['Stream'][0]['quality']) ? $environment['Stream'][0]['quality'] : '90'; ?>,
 		topics: <?php echo $streamTopics; ?>,
 		labels: <?php echo $streamNames; ?>
 	});
