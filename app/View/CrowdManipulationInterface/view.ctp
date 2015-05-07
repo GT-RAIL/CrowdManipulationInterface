@@ -453,8 +453,8 @@ foreach ($environment['Urdf'] as $urdf) {
 				tfClient: _TF,
 				camera: _VIEWER.camera,
 				rootObject: _VIEWER.selectableObjects,
-				<?php echo ($im['Collada']['id']) ? __('loader:%d,', h($im['Collada']['id'])) : ''; ?>
-				<?php echo ($im['Resource']['url']) ? __('path:"%s",', h($im['Resource']['url'])) : ''; ?>
+				<?php echo isset($im['Collada']['id']) ? __('loader:%d,', h($im['Collada']['id'])) : ''; ?>
+				<?php echo isset($im['Resource']['url']) ? __('path:"%s",', h($im['Resource']['url'])) : ''; ?>
 				topic: '<?php echo h($im['topic']); ?>'
 			});
 		<?php endforeach; ?>
