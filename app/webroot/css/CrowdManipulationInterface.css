@@ -3,21 +3,21 @@ html, body{
 	overflow-x: hidden;
 }
 
-#queueStatus {
-	margin-top:-40px;
+#queue-status {
+	margin-top: -40px;
 	font-size: 30px;
 }
 
-#main_content {
+#main-content {
 	margin-top: -20px;
 }
 
-#important_feedback {
+#important-feedback {
 	font-size: 26px;
 	text-transform: uppercase;
 }
 
-#fatal_feedback {
+#fatal-feedback {
 	font-size: 26px;
 	text-transform: uppercase;
 }
@@ -26,7 +26,7 @@ html, body{
 	overflow-y: scroll;
 	overflow-x: hidden;
 	word-wrap: break-word;
-	height:120px;
+	height: 120px;
 	border-top: solid 2px #f1f1f1;
 	border-bottom: solid 2px #f1f1f1;
 	border-left: solid 5px #f1f1f1;
@@ -40,11 +40,11 @@ html, body{
 
 .feedback-overlay {
 	background-color: #ed6d13;
-	margin-left:-10px;
-	padding-top:10px;
+	margin-left: -10px;
+	padding-top: 10px;
 	color: #ffffff;
 	position: absolute;
-	width:100%;
+	width: 100%;
 	opacity: 0.9;
 	padding-bottom: 10px;
 	z-index: 3;
@@ -52,7 +52,7 @@ html, body{
 }
 
 .feedback-overlay.hidden {
-	display:none
+	display: none;
 }
 
 
@@ -66,7 +66,7 @@ html, body{
 }
 
 .feedback-overlay.fatal.hidden {
-	display:none
+	display: none;
 }
 
 #tutorial {
@@ -102,12 +102,12 @@ html, body{
 	top: 180px;
 }
 
-#welcome_highlight {
+#welcome-highlight {
 	top: 110px;
 	font-size: 30px;
 
 }
 
-#feedback_highlight {
+#feedback-highlight {
 	top: 400px;
 }

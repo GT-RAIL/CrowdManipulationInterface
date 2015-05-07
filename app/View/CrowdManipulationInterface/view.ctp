@@ -4,12 +4,11 @@
  *
  * The Crowd Manipulation Interface controller. This interface will allow for navigation and manipulation controls.
  *
- * @author		Russell Toris - rctoris@wpi.edu
- * @author		Peter Mitrano - robotwizard@wpi.edu*
+ * @author		Russell Toris - rctoris@wpi.edu, Peter Mitrano - robotwizard@wpi.edu
  * @copyright	2014 Worcester Polytechnic Institute
  * @link		https://github.com/WPI-RAIL/CrowdManipulationInterface
  * @since		CrowdManipulationInterface v 0.0.1
- * @version		0.0.6
+ * @version		0.0.1
  * @package		app.Controller
  */
 ?>
@@ -37,12 +36,12 @@ echo $this->Rms->tf(
 		<section>
 			<div class='row'>
 				<div class='12u'>
-					<h3 id='queueStatus'></h3>
+					<h3 id='queue-status'></h3>
 				</div>
 			</div>
 		</section>
 		<div class='overlay hidden' id='tutorial'>
-			<div class='highlight' id='welcome_highlight'>
+			<div class='highlight' id='welcome-highlight'>
 				<strong>
 					Welcome! Press next to proceed to the next instruction.
 				</strong>
@@ -57,21 +56,21 @@ echo $this->Rms->tf(
 				<br/>
 				Segment will look for objects and add them to the 3D world.
 			</div>
-			<div class='highlight' id='keyboard_highlight'>
+			<div class='highlight' id='keyboard-highlight'>
 				Drive the robot with the <strong>W, A, S, D</strong> keys
 				<br/>
 				Tilt the camera with <strong>Up</strong> and <strong>Down</strong> keys
 			</div>
-			<div class='highlight' id='feedback_highlight'>
+			<div class='highlight' id='feedback-highlight'>
 				Feedback may appear if something goes wrong
 			</div>
 			<button id='next' class='button'>Next</button>
 		</div>
-		<div class='row' id='main_content'>
-			<div id='important_feedback' class='feedback-overlay hidden'>
+		<div class='row' id='main-content'>
+			<div id='important-feedback' class='feedback-overlay hidden'>
 				<h1>ERROR: ...</h1>
 			</div>
-			<div id='fatal_feedback' class='feedback-overlay fatal hidden'>
+			<div id='fatal-feedback' class='feedback-overlay fatal hidden'>
 				<h1>FATAL ERROR: ...</h1>
 			</div>
 			<div class='6u'>
@@ -159,11 +158,11 @@ foreach ($environment['Urdf'] as $urdf) {
 <script>
 	/** display tutorial information as overlays with timeouts */
 	var tutorial_hl = $('#tutorial');
-	var welcome_hl = $('#welcome_highlight');
+	var welcome_hl = $('#welcome-highlight');
 	var urdf_hl = $('#urdf_highlight');
 	var buttons_hl = $('#buttons_highlight');
-	var feedback_hl = $('#feedback_highlight');
-	var keyboard_hl = $('#keyboard_highlight');
+	var feedback_hl = $('#feedback-highlight');
+	var keyboard_hl = $('#keyboard-highlight');
 
 	function tutorial(){
 		tutorial_hl.css("opacity","0.0");
@@ -192,16 +191,16 @@ foreach ($environment['Urdf'] as $urdf) {
 
 		buttons_hl.fadeOut('slow');
 		feedback_hl.fadeIn('slow');
-		$('#fatal_feedback').fadeIn('slow');
-		$('#important_feedback').fadeIn('slow');
+		$('#fatal-feedback').fadeIn('slow');
+		$('#important-feedback').fadeIn('slow');
 	}
 
 	function keyboard_tutorial() {
 		//move overlay back up since text is higher
 		$("#tutorial").css("height","20%");
 
-		$('#fatal_feedback').fadeOut('slow');
-		$('#important_feedback').fadeOut('slow');
+		$('#fatal-feedback').fadeOut('slow');
+		$('#important-feedback').fadeOut('slow');
 		feedback_hl.fadeOut('slow');
 		keyboard_hl.fadeIn('slow');
 
@@ -213,9 +212,9 @@ foreach ($environment['Urdf'] as $urdf) {
 		urdf_hl.fadeOut();
 		feedback_hl.fadeOut();
 		keyboard_hl.fadeOut();
-		$("#important_feedback").removeAttr('style');
-		$("#fatal_feedback").removeAttr('style');
-		$('#queueStatus').html('robot active, begin your control');
+		$("#important-feedback").removeAttr('style');
+		$("#fatal-feedback").removeAttr('style');
+		$('#queue-status').html('robot active, begin your control');
 		enabled = true;
 		step=0;
 	}
@@ -267,16 +266,9 @@ foreach ($environment['Urdf'] as $urdf) {
 	 * This includes interactive markers, keyboard controls, and button controls
 	 * @param message Int32 message, the id of the user to remove
 	 */
-	rosQueue.on('first_enabled', function () {
-		//begin the tutorial if the user hasn't visited before
-		var has_visited = <?php echo $has_visited?>;
-		if (has_visited){
-			noTutorial();
-		}
-		else {
-			//slight pause helps with loading the webpage
-			setTimeout(tutorial, 1000);
-		}
+	rosQueue.on('activate', function () {
+		//slight pause helps with loading the webpage
+		setTimeout(tutorial, 1000);
 	});
 
 	/**
@@ -286,7 +278,7 @@ foreach ($environment['Urdf'] as $urdf) {
 		var d = new Date();
 		d.setSeconds(message.sec);
 		d.setMinutes(message.min);
-		$('#queueStatus').html('robot active!  Time Remaining ' + d.toLocaleTimeString().substring(3, 8));
+		$('#queue-status').html('robot active!  Time Remaining ' + d.toLocaleTimeString().substring(3, 8));
 	});
 
 	/**
@@ -309,7 +301,7 @@ foreach ($environment['Urdf'] as $urdf) {
 		d.setSeconds(data.sec);
 		d.setMinutes(data.min);
 		//substring removes hours and AM/PM
-		$('#queueStatus').html('Your waiting time is ' + d.toLocaleTimeString().substring(3, 8));
+		$('#queue-status').html('Your waiting time is ' + d.toLocaleTimeString().substring(3, 8));
 	});
 
 	/*
@@ -374,8 +366,8 @@ foreach ($environment['Urdf'] as $urdf) {
 
 	function showFeedback(severity,resolved,message) {
 		var feedback = document.getElementById('feedback');
-		var feedbackOverlay = document.getElementById('important_feedback');
-		var fatalFeedbackOverlay = document.getElementById('fatal_feedback');
+		var feedbackOverlay = document.getElementById('important-feedback');
+		var fatalFeedbackOverlay = document.getElementById('fatal-feedback');
 
 		switch (severity) {
 			case 2:
@@ -500,7 +492,7 @@ foreach ($environment['Urdf'] as $urdf) {
 	}
 
 	function addQueueStatus(){
-		$('#queueStatus').html('robot active!');
+		$('#queue-status').html('robot active!');
 	}
 </script>
 

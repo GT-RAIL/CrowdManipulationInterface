@@ -1,5 +1,5 @@
 CrowdManipulationInterface Build Setup
-=============================
+======================================
 
 [Phing](http://www.phing.info/) is used for documenting linting of PHP files.
 
