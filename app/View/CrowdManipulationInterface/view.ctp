@@ -106,24 +106,35 @@ echo $this->Rms->tf(
 	</div>
 </section>
 
-
 <script>
-	_S = Math.min(((window.innerWidth / 2) - 120), window.innerHeight * 0.60);
+	var size = Math.min(((window.innerWidth / 2) - 120), window.innerHeight * 0.60);
+	<?php
+		$streamTopics = '[';
+		$streamNames = '[';
+		foreach ($environment['Stream'] as $stream) {
+			$streamTopics .= "'" . $stream['topic'] . "', ";
+			$streamNames .= "'" . $stream['name'] . "', ";
+		}
+		// remove the final comma
+		$streamTopics = substr($streamTopics, 0, strlen($streamTopics) - 2);
+		$streamNames = substr($streamNames, 0, strlen($streamNames) - 2);
+		$streamTopics .= ']';
+		$streamNames .= ']';
+	?>
 	new MJPEGCANVAS.MultiStreamViewer({
 		divID: 'mjpeg',
-		host: 'carl-bot',
-		width: _S,
-		height: _S * 0.85,
-		quality: 60,
-		topics: ['/camera/rgb/image_raw', '/sink_camera/rgb/image_raw', '/coffee_table_camera/rgb/image_raw'],
-		labels: ['First Person', 'Sink', 'Coffee Table']
+		host: '<?php echo $environment['Mjpeg']['host'].":".$environment['Mjpeg']['port']; ?>',
+		width: size,
+		height: size * 0.85,
+		quality: <?php echo $environment['Stream'][0]['quality']; ?>,
+		topics: <?php echo $streamTopics; ?>,
+		labels: <?php echo $streamNames; ?>
 	});
-
 
 	_VIEWER = new ROS3D.Viewer({
 		divID: 'viewer',
-		width: _S,
-		height: _S * 0.85,
+		width: size,
+		height: size * 0.85,
 		antialias: true,
 		background: '#50817b',
 		intensity: 0.660000
@@ -414,8 +425,8 @@ foreach ($environment['Urdf'] as $urdf) {
 	/** add elements to the interface to allow the user to control carl*/
 	function addTeleop(){
 		//keyboard tele-op
-		_TELEOP = new KEYBOARDTELEOP.Teleop({ros: _ROS, topic: '/cmd_vel_safe'});
-		_TELEOP.throttle = 0.800000;
+		_TELEOP = new KEYBOARDTELEOP.Teleop({ros: _ROS, topic: '<?php echo $environment['Teleop'][0]['topic']; ?>'});
+		_TELEOP.throttle = <?php echo $environment['Teleop'][0]['throttle']; ?>;
 
 		/** arrow keys
 		 * on key up and key down send commands to drive or tilt camera
