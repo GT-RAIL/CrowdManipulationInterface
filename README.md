@@ -1,4 +1,4 @@
-CrowdManipulationInterface [![Build Status](https://api.travis-ci.org/WPI-RAIL/CrowdManipulationInterface.png)](https://travis-ci.org/WPI-RAIL/CrowdManipulationInterface)
+CrowdManipulationInterface [![Build Status](https://api.travis-ci.org/GT-RAIL/CrowdManipulationInterface.png)](https://travis-ci.org/GT-RAIL/CrowdManipulationInterface)
 ==========================
 
 #### Manipulation Interface for Crowd Control of CARL
