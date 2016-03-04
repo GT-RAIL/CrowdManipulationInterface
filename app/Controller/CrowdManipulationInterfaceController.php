@@ -6,7 +6,7 @@ App::uses('InterfaceController', 'Controller');
  *
  * The Crowd Manipulation Interface controller. This interface will allow for navigation and manipulation controls.
  *
- * @author		Russell Toris - rctoris@wpi.edu, Peter Mitrano - robotwizard@wpi.edu
+ * @author		Russell Toris - russell.toris@gmail.com, Peter Mitrano - robotwizard@wpi.edu
  * @copyright	2014 Worcester Polytechnic Institute
  * @link		https://github.com/WPI-RAIL/CrowdManipulationInterface
  * @since		CrowdManipulationInterface v 0.0.1

@@ -2,7 +2,7 @@
 
 # Interface Setup Script
 #
-# Author: Russell Toris - rctoris@wpi.edu
+# Author: Russell Toris - russell.toris@gmail.com
 
 echo "  ____    _    ____  _     "
 echo " / ___|  / \  |  _ \| |    "
@@ -13,7 +13,7 @@ echo
 
 echo
 echo "CARL Crowd Manipulation Interface Setup"
-echo "Author: Russell Toris - rctoris@wpi.edu"
+echo "Author: Russell Toris - russell.toris@gmail.com"
 echo "Author: Peter Mitrano - robotwizard@wpi.edu"
 echo
 
